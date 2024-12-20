@@ -9,6 +9,3 @@ app = FastAPI(
     version="1.0.0"
 )
 app.include_router(router)
-
-if __name__ == '__main__':
-    run("main:app", port=8000, host='127.0.0.1', reload=True)

@@ -12,7 +12,7 @@ class WalletRepository:
     async def perform_operation(cls, wallet_uuid: str, operation_type: str, amount: float, db: AsyncSession) -> None:
         try:
             async with db.begin():
-                query = select(Wallet).filter(Wallet.uuid == wallet_uuid)
+                query = select(Wallet).filter(Wallet.uuid == wallet_uuid).with_for_update()
                 request = await db.execute(query)
                 wallet = request.scalar_one_or_none()
 
